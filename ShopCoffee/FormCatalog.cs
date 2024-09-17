@@ -22,6 +22,10 @@ namespace ShopCoffee
             TypeProduct t = new TypeProduct("кофе");
             Product pr1 = new Product("эспрессо", 100, t);
             label1.Text = pr1.Title + " " + pr1.Cost + " " + pr1.TypeProduct;
+            ListViewItem product1 = new ListViewItem(pr1.Title);
+            product1.SubItems.Add(pr1.Cost.ToString());
+            product1.SubItems.Add(pr1.TypeProduct.ToString());
+            listViewCatalog.Items.Add(product1);
         }
     }
 }
