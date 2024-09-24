@@ -34,6 +34,11 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuUsers = new System.Windows.Forms.ToolStripMenuItem();
+            this.корзинаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zsdfghsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -63,12 +68,59 @@
             this.columnHeader3});
             this.listViewCatalog.Dock = System.Windows.Forms.DockStyle.Left;
             this.listViewCatalog.HideSelection = false;
-            this.listViewCatalog.Location = new System.Drawing.Point(0, 0);
+            this.listViewCatalog.Location = new System.Drawing.Point(0, 24);
             this.listViewCatalog.Name = "listViewCatalog";
-            this.listViewCatalog.Size = new System.Drawing.Size(443, 450);
+            this.listViewCatalog.Size = new System.Drawing.Size(443, 426);
             this.listViewCatalog.TabIndex = 2;
             this.listViewCatalog.UseCompatibleStateImageBehavior = false;
             this.listViewCatalog.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Продукт";
+            this.columnHeader1.Width = 120;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Цена";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Тип продукта";
+            this.columnHeader3.Width = 120;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuUsers,
+            this.корзинаToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // toolStripMenuUsers
+            // 
+            this.toolStripMenuUsers.CheckOnClick = true;
+            this.toolStripMenuUsers.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.zsdfghsToolStripMenuItem});
+            this.toolStripMenuUsers.Name = "toolStripMenuUsers";
+            this.toolStripMenuUsers.Size = new System.Drawing.Size(134, 20);
+            this.toolStripMenuUsers.Text = "Выбор пользователя";
+            // 
+            // корзинаToolStripMenuItem
+            // 
+            this.корзинаToolStripMenuItem.Name = "корзинаToolStripMenuItem";
+            this.корзинаToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.корзинаToolStripMenuItem.Text = "Корзина";
+            // 
+            // zsdfghsToolStripMenuItem
+            // 
+            this.zsdfghsToolStripMenuItem.Name = "zsdfghsToolStripMenuItem";
+            this.zsdfghsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.zsdfghsToolStripMenuItem.Text = "zsdfghs";
+            this.zsdfghsToolStripMenuItem.Click += new System.EventHandler(this.zsdfghsToolStripMenuItem_Click);
             // 
             // FormCatalog
             // 
@@ -78,8 +130,13 @@
             this.Controls.Add(this.listViewCatalog);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormCatalog";
             this.Text = "СимонШОП - все для кофе";
+            this.Load += new System.EventHandler(this.FormCatalog_Load);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -93,6 +150,10 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuUsers;
+        private System.Windows.Forms.ToolStripMenuItem корзинаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem zsdfghsToolStripMenuItem;
     }
 }
 
