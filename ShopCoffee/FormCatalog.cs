@@ -12,6 +12,7 @@ namespace ShopCoffee
 {
     public partial class FormCatalog : Form
     {
+        Catalog catalog = new Catalog();
         public FormCatalog()
         {
             InitializeComponent();
@@ -19,7 +20,21 @@ namespace ShopCoffee
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            Cart cartAlan = new Cart(new User("Vasya", "Vladik"));
+            try
+            {
+                int id = Convert.ToInt32(listViewCatalog.SelectedItems[0].SubItems[3].Text);
+                Product product = catalog.FindProductFromId(id);
+                cartAlan.Add(product, 3);
+                dataGridViewCart.Rows.Add(new object[]{product.ID, product.ToString(), product.Cost, "-", 1, "+"});
+
+            }
+            catch
+            {
+                MessageBox.Show("Выберите продукт");
+            }
+            //cartAlan.Add()
+
             
             //TypeProduct t = new TypeProduct("кофе");
             //Product pr1 = new Product("эспрессо", 100, t);
@@ -38,7 +53,7 @@ namespace ShopCoffee
 
         private void FormCatalog_Load(object sender, EventArgs e)
         {
-            Catalog catalog = new Catalog();
+            
             catalog.LoadFromFile();
             listViewCatalog.Items.AddRange(catalog.ConvertToListView());
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShopCoffee
 {
-    class TypeProduct
+    public class TypeProduct
     {
         public string Name { get; }
 
@@ -21,18 +21,25 @@ namespace ShopCoffee
         }
     }
 
-    class Product
+    public class Product
     {
+        static int count = 0;
+        public int ID { get; }
         public string Title { get; }
         public decimal Cost { get; }
         public TypeProduct TypeProduct { get; }
 
         public Product(string title, decimal cost, TypeProduct typeProduct)
         {
+            ID = count++;
             this.Title = title;
             this.Cost = cost;
             this.TypeProduct = typeProduct;
         }
 
+        public override string ToString()
+        {
+            return $"{Title} {Cost} {TypeProduct}";
+        }
     }
 }

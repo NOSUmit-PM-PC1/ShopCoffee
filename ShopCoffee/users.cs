@@ -12,6 +12,7 @@ namespace ShopCoffee
         List<User> listUsers = new List<User>();
         User activeUser = null;
         ToolStripMenuItem activeMenu = null;
+
         public void Add(User user)
         {
             listUsers.Add(user);
@@ -38,7 +39,7 @@ namespace ShopCoffee
         }
     }
 
-    class User
+    public class User
     {
         public string Name { get; }
         public string Adress { get; }

@@ -39,9 +39,20 @@ namespace ShopCoffee
                 ListViewItem product1 = new ListViewItem(prod.Title);
                 product1.SubItems.Add(prod.Cost.ToString());
                 product1.SubItems.Add(prod.TypeProduct.ToString());
+                product1.SubItems.Add(prod.ID.ToString());
                 tempList.Add(product1);
             }
             return tempList.ToArray();
+        }
+
+        public Product FindProductFromId(int id)
+        {
+            foreach (var item in list)
+            {
+                if (item.ID == id)
+                    return item;
+            }
+            return null;
         }
     }
 }
