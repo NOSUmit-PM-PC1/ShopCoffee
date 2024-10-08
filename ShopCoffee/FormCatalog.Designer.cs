@@ -36,10 +36,10 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuUsers = new System.Windows.Forms.ToolStripMenuItem();
             this.корзинаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dataGridViewCart = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -100,6 +100,10 @@
             this.columnHeader3.Text = "Тип продукта";
             this.columnHeader3.Width = 120;
             // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "ID";
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -124,10 +128,6 @@
             this.корзинаToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.корзинаToolStripMenuItem.Text = "Корзина";
             // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "ID";
-            // 
             // dataGridViewCart
             // 
             this.dataGridViewCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -142,6 +142,7 @@
             this.dataGridViewCart.Name = "dataGridViewCart";
             this.dataGridViewCart.Size = new System.Drawing.Size(474, 150);
             this.dataGridViewCart.TabIndex = 4;
+            this.dataGridViewCart.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCart_CellContentClick);
             // 
             // Id
             // 

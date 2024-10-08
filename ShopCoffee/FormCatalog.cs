@@ -13,6 +13,7 @@ namespace ShopCoffee
     public partial class FormCatalog : Form
     {
         Catalog catalog = new Catalog();
+        Cart currentUserCart = new Cart(new User("Vasya", "Vladik"));
         public FormCatalog()
         {
             InitializeComponent();
@@ -20,14 +21,12 @@ namespace ShopCoffee
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Cart cartAlan = new Cart(new User("Vasya", "Vladik"));
             try
             {
                 int id = Convert.ToInt32(listViewCatalog.SelectedItems[0].SubItems[3].Text);
                 Product product = catalog.FindProductFromId(id);
-                cartAlan.Add(product, 3);
-                dataGridViewCart.Rows.Add(new object[]{product.ID, product.ToString(), product.Cost, "-", 1, "+"});
-
+                currentUserCart.Add(product, 1);
+                currentUserCart.ShowCart(dataGridViewCart);
             }
             catch
             {
@@ -70,6 +69,33 @@ namespace ShopCoffee
         private void zsdfghsToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridViewCart_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //MessageBox.Show(e.RowIndex.ToString() + " " + e.ColumnIndex.ToString());
+            switch (e.ColumnIndex)
+            {
+                case 5:
+                    {
+                        var t = dataGridViewCart.Rows[e.RowIndex].Cells[0].Value;
+                        currentUserCart.Increase(Convert.ToInt32(t));
+                        currentUserCart.ShowCart(dataGridViewCart);
+                        break;// уменьшить количество
+                    }
+                   
+                case 3:
+                    {
+                        var t = dataGridViewCart.Rows[e.RowIndex].Cells[0].Value;
+                        currentUserCart.Decrease(Convert.ToInt32(t));
+                        currentUserCart.ShowCart(dataGridViewCart);
+                        break;
+                    }
+                    //увеличить количество
+            }
+                
+            
+          
         }
     }
 }
