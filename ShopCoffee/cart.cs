@@ -103,4 +103,25 @@ namespace ShopCoffee
             }
         }
     }
+    public class ListCarts
+    {
+        List<Cart> listCarts = new List<Cart>();
+
+        public void AddCardForUser(string userName)
+        { 
+            if (FindCartByUserName(userName) == null)
+                var tempCart = new Cart(userName)
+        }
+
+        public Cart FindCartByUserName(string userName)
+        {
+            foreach (var cart in listCarts)
+            {
+                if (cart.user.Name == userName)
+                    return cart;
+            }
+            return null;
+        }
+    
+    }
 }
