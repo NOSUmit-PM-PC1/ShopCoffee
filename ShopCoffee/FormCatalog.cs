@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,6 +16,7 @@ namespace ShopCoffee
     {
         Catalog catalog = new Catalog();
         Cart currentUserCart = null;
+        ListCarts listCarts = new ListCarts();
         Users users;
 
         public FormCatalog()
@@ -25,14 +28,6 @@ namespace ShopCoffee
         {
             try
             {
-                if (currentUserCart == null)
-                {
-                    if (users.ActiveUser != null)
-                    {
-                        currentUserCart = new Cart(users.ActiveUser);
-                    }
-                }
-                toolStripStatusLabelUserName.Text = currentUserCart.user.Name;
                 int id = Convert.ToInt32(listViewCatalog.SelectedItems[0].SubItems[3].Text);
                 Product product = catalog.FindProductFromId(id);
                 currentUserCart.Add(product, 1);
@@ -68,14 +63,39 @@ namespace ShopCoffee
             
             catalog.LoadFromFile();
             
-
             users = new Users();
             User alan = new User("Алан", "Владикавказ, Церетели 16, 6 этаж, 601");
             users.Add(alan);
             users.Add(new User("Залина", "Владикавказ, Владивостокская, 97б, 38"));
+            AddUsersToMenu();
+        }
+        public void AddUsersToMenu()
+        {
+            List<ToolStripMenuItem> listItemMenuUser = new List<ToolStripMenuItem>();
+            foreach (var item in users)
+            {
+                ToolStripMenuItem menuItem = new ToolStripMenuItem(((User)item).Name) { CheckOnClick = true };
+                listItemMenuUser.Add(menuItem);
+                menuItem.Click += new System.EventHandler(menuItem_Click);
+            }
+            menuItem_Click(listItemMenuUser[0], null);
+            toolStripMenuUsers.DropDownItems.AddRange(listItemMenuUser.ToArray());
+        }
 
-           
+        ToolStripMenuItem activeMenu = null;
 
+        private void menuItem_Click(object sender, EventArgs e)
+        {
+            if (activeMenu != null)
+            {
+                activeMenu.Checked = false;
+            }
+
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+            menuItem.Checked = true;
+            activeMenu = menuItem;
+            users.SetCurrentUserByName(activeMenu.Text);
+            toolStripStatusLabelUserName.Text = users.ActiveUser.Name;
         }
 
         private void zsdfghsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -113,21 +133,32 @@ namespace ShopCoffee
         private void FormCatalog_Activated(object sender, EventArgs e)
         {
             listViewCatalog.Items.AddRange(catalog.ConvertToListView());
-            toolStripMenuUsers.DropDownItems.AddRange(users.ConvertToToolStripItem());
+            
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             users.SetCurrentUserByName("Алан");
-            users
-            currentUserCart = 
-            toolStripStatusLabelUserName.Text = currentUserCart.user.Name;
+            currentUserCart = listCarts.GetCartForUser(users.ActiveUser);
+            currentUserCart.ShowCart(dataGridViewCart);
+            toolStripStatusLabelUserName.Text = users.ActiveUser.Name;
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             users.SetCurrentUserByName("Залина");
-            toolStripStatusLabelUserName.Text = currentUserCart.user.Name;
+            currentUserCart = listCarts.GetCartForUser(users.ActiveUser);
+            currentUserCart.ShowCart(dataGridViewCart);
+            toolStripStatusLabelUserName.Text = users.ActiveUser.Name;
+        }
+
+        private void FormCatalog_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //BinaryFormatter formatter = new BinaryFormatter();
+            //using (FileStream fs = new FileStream("Data/users.dat", FileMode.OpenOrCreate))
+            //{
+            //    formatter.Serialize(fs, users);
+            //}
         }
     }
 }

@@ -107,10 +107,16 @@ namespace ShopCoffee
     {
         List<Cart> listCarts = new List<Cart>();
 
-        public void AddCardForUser(string userName)
-        { 
-            if (FindCartByUserName(userName) == null)
-                var tempCart = new Cart(userName)
+        public Cart GetCartForUser(User userName)
+        {
+            foreach (var cart in listCarts)
+            {
+                if (cart.user == userName)
+                    return cart;
+            }
+            var tempCart = new Cart(userName);
+            listCarts.Add(tempCart);
+            return tempCart;
         }
 
         public Cart FindCartByUserName(string userName)
