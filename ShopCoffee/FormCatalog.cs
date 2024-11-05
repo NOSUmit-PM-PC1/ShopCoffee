@@ -64,9 +64,9 @@ namespace ShopCoffee
             catalog.LoadFromFile();
             
             users = new Users();
-            User alan = new User("Алан", "Владикавказ, Церетели 16, 6 этаж, 601");
+            User alan = new User("Алан", "Владикавказ, Церетели 16, 6 этаж, 601", "sdfg");
             users.Add(alan);
-            users.Add(new User("Залина", "Владикавказ, Владивостокская, 97б, 38"));
+            users.Add(new User("Залина", "Владикавказ, Владивостокская, 97б, 38", "sdfga"));
             AddUsersToMenu();
         }
         public void AddUsersToMenu()
